@@ -22,8 +22,7 @@ jobs:
       - name: Generate job matrix from upstream versions.json
         run: |
           wget https://raw.githubusercontent.com/nextcloud/docker/master/versions.json
-          matrix="$(jq '{"base": (.[].variants | keys_unsorted | unique), "version": (map(.version) | unique | sort)}' versions.json | jq -s '.[0] | @json')"
-          echo "matrix=\"$matrix\"" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(jq '{"base": (.[].variants | keys_unsorted | unique), "version": (map(.version) | unique | sort)}' versions.json | jq -s '.[0] | @json')" >> "$GITHUB_OUTPUT"
         id: generate-matrix
 
   test:
