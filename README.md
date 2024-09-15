@@ -13,4 +13,4 @@ To use the image, simply replace the source of the nextcloud image in your docke
 - `ghcr.io/spacebird-dev/nextcloud-docker-smb`
 - or `quay.io/spacebird-dev/nextcloud-docker-smb`
 
-All upstream tags except for `production` variants should be available.
+All upstream tags except for `latest` and the `production` variants should be available.

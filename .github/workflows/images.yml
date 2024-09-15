@@ -21,7 +21,8 @@ jobs:
           fetch-depth: 0
       - name: Generate job matrix from upstream versions.json
         run: |
-          wget https://raw.githubusercontent.com/nextcloud/docker/master/versions.json
+          version=$(curl https://api.github.com/repos/nextcloud/docker/releases/latest | jq -r '.tag_name')
+          wget https://raw.githubusercontent.com/nextcloud/docker/$version/versions.json
           echo "matrix=$(jq '{"base": (.[].variants | keys_unsorted | unique), "version": (map(.version) | unique | sort)}' versions.json | jq -cs '.[0]')" >> "$GITHUB_OUTPUT"
         id: generate-matrix
 
@@ -54,7 +55,7 @@ jobs:
 
       - name: Download SMB dockerfile for ${{ matrix.base }} and set version
         run: |
-          wget https://raw.githubusercontent.com/nextcloud/docker/master/.examples/dockerfiles/smb/${{ matrix.base }}/Dockerfile
+          wget https://raw.githubusercontent.com/nextcloud/docker/$()/.examples/dockerfiles/smb/${{ matrix.base }}/Dockerfile
           sed -i 's/FROM nextcloud:.*/FROM nextcloud:${{ matrix.version }}-${{ matrix.base }}/' Dockerfile
 
       - name: Generate docker tags
