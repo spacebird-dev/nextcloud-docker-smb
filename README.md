@@ -7,7 +7,7 @@ This results in a lightweight single-purpose image with full PHP-native SMB supp
 
 The intended purpose for this image is as a drop-in replacement for the Nextcloud [Helm Chart](https://github.com/nextcloud/helm).
 
-Our build process [hooks into the upstream repository](.github/actions/images.yml), so image tags and variants should always be up-to-date.
+Our build process [hooks into the upstream repository](.github/workflows/images.yml), so image tags and variants should always be up-to-date.
 
 ## Usage
 
@@ -16,7 +16,7 @@ To use the image, simply replace the source of the nextcloud image in your docke
 - `ghcr.io/spacebird-dev/nextcloud-docker-smb`
 - or `quay.io/spacebird-dev/nextcloud-docker-smb`
 
-All upstream tags except for `latest` and the `production` variants should be available.
+All versioned upstream tags except for `latest` and the `production` variants should be available.
 
 ## Upstream Discussion
 
