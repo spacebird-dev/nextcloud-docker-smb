@@ -3,6 +3,6 @@ ARG VERSION
 FROM nextcloud:${VERSION}-fpm-alpine
 
 RUN set -ex; \
-    apk add --no-cache --virtual .build-deps samba-dev; \
+    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS procps samba-client samba-dev; \
     pecl install smbclient; \
     docker-php-ext-enable smbclient;
