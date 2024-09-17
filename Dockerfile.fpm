@@ -1,0 +1,10 @@
+ARG VERSION
+
+FROM nextcloud:${VERSION}-fpm
+
+RUN set -ex; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends procps smbclient libsmbclient-dev; \
+    rm -rf /var/lib/apt/lists/*; \
+    pecl install smbclient; \
+    docker-php-ext-enable smbclient;

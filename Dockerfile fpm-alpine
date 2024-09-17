@@ -1,0 +1,8 @@
+ARG VERSION
+
+FROM nextcloud:${VERSION}-fpm-alpine
+
+RUN set -ex; \
+    apk add --no-cache --virtual .build-deps samba-dev; \
+    pecl install smbclient; \
+    docker-php-ext-enable smbclient;

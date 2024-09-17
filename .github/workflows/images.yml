@@ -57,11 +57,6 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_TOKEN}}
 
-      - name: Download SMB dockerfile for ${{ matrix.base }} and set version
-        run: |
-          wget https://raw.githubusercontent.com/nextcloud/docker/${{ needs.init.outputs.version }}/.examples/dockerfiles/smb/${{ matrix.base }}/Dockerfile
-          sed -i 's/FROM nextcloud:.*/FROM nextcloud:${{ matrix.version }}-${{ matrix.base }}/' Dockerfile
-
       - name: Generate docker tags
         id: tags
         uses: docker/metadata-action@v5
@@ -85,4 +80,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.tags.outputs.tags }}
           push: true
-          file: Dockerfile
+          file: Dockerfile.${{ matrix.base }}
+          build-args: |
+            VERSION=${{ matrix.version }}
