@@ -7,4 +7,5 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends procps smbclient libsmbclient-dev; \
     rm -rf /var/lib/apt/lists/*; \
     pecl install smbclient; \
-    docker-php-ext-enable smbclient;
+    docker-php-ext-enable smbclient; \
+    mkdir -p /var/www/.cache/samba && chown -R www-data: var/www/.cache/samba;
