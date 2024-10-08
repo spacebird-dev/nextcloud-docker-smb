@@ -8,4 +8,4 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*; \
     pecl install smbclient; \
     docker-php-ext-enable smbclient; \
-    mkdir -p /var/www/.cache/samba && chown -R www-data: var/www/.cache/samba;
+    mkdir -p /var/www/.cache/samba && chown -R www-data: /var/www/.cache/samba;

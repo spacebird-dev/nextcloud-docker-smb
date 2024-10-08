@@ -6,4 +6,4 @@ RUN set -ex; \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS procps samba-client samba-dev; \
     pecl install smbclient; \
     docker-php-ext-enable smbclient; \
-    mkdir -p /var/www/.cache/samba && chown -R www-data: var/www/.cache/samba;
+    mkdir -p /var/www/.cache/samba && chown -R www-data: /var/www/.cache/samba;
