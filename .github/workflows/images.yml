@@ -19,7 +19,7 @@ jobs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
       version: ${{ steps.generate-matrix.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Generate job matrix from upstream versions.json
@@ -35,7 +35,7 @@ jobs:
     name: "${{ matrix.base }}-${{ matrix.version }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
